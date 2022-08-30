@@ -1,5 +1,5 @@
 const express = require('express')
-const path = require("path");
+// const path = require("path");
 const logger = require('morgan')
 const cors = require('cors')
 
@@ -12,7 +12,7 @@ const swaggerDocument = require('./swagger.json');
 // dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 const authRouter = require('./routes/api/auth');
-// const avatarsRouter = require('./routes/api/avatars');
+
 const transactionsRouter = require('./routes/api/transactions');
 
 const app = express();
@@ -27,11 +27,7 @@ app.use(express.static('public'))
 app.use('/api/auth', authRouter);
 app.use('/api/transactions', transactionsRouter);
 
-app.use("/link", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/link.html"));
-});
 
-// app.use('/users/avatars', avatarsRouter);
 // app.use('/api/contacts', contactsRouter);
 
 // type in the browser 'http://localhost:3000/api-docs'
