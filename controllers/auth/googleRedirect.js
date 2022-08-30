@@ -1,6 +1,7 @@
 const queryString = require("query-string");
 const axios = require("axios");
 const { User } = require(`../../models/user`);
+const defaultUserCategories = require('../../services/defaultUserCategories');
 const jwt = require("jsonwebtoken");
 
 const googleRedirect = async (req, res) => {
@@ -52,6 +53,7 @@ const googleRedirect = async (req, res) => {
 
   const token = jwt.sign(payload, SECRET_KEY);
   await User.findByIdAndUpdate(_id, { token });
+  await defaultUserCategories(newUser._id);
 
   return res.redirect(`${process.env.FRONTEND_URL}?token=${token}`).json({email: email, token: token });
 };

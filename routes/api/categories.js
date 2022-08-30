@@ -8,6 +8,6 @@ const { auth } = require(`../../middlewares`);
 
 const router = express.Router();
 
-router.get("/", auth, ctrlWrapper(ctrl.getAllCategories));
+router.get("/categories", auth, ctrlWrapper(ctrl.getAllCategories));
 
 module.exports = router;

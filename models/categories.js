@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Joi = require('joi');
 
 const categorySchema = new Schema(
     {
@@ -19,8 +20,14 @@ const categorySchema = new Schema(
     { versionKey: false, timestamps: true }
 );
 
+const joiSchema = Joi.object({
+    title: Joi.string().min(2).max(15),
+    type: Joi.string(),
+  })
+
 const Category = model('categories', categorySchema);
 
 module.exports = {
     Category,
+    joiSchema,
 };
