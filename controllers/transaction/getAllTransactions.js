@@ -44,23 +44,10 @@ const getAllTransactions = async (req, res) => {
     },
   ]);
 
-  if (transactionsByType.length === 0) {
-    throw createError(404, "No transactions for this period");
-  }
-  if (!transactionsByType) {
-    throw createError(404);
-  }
   const allTransactions = await Transaction.find(
     { owner, day, month, year },
     "-createdAt -updatedAt"
   );
-  if (allTransactions.length === 0) {
-    throw createError(404, "No transactions for this period");
-  }
-
-  if (!allTransactions) {
-    throw createError(404);
-  }
 
   res.json({
     status: "success",

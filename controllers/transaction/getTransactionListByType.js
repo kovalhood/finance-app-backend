@@ -30,15 +30,7 @@ const getTransactionListByType = async (req, res) => {
     "-createdAt -updatedAt"
   );
 
-  if (result.length === 0) {
-    throw createError(404, "No transactions for this period");
-  }
-
-  if (!result) {
-    throw createError(404);
-  }
-
-  res.json(result);
+  res.json({result});
 };
 
 module.exports = getTransactionListByType;
