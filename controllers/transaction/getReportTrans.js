@@ -65,14 +65,6 @@ const getReportTrans = async (req, res) => {
     },
   ]);
 
-  if (transactions.length === 0) {
-    throw createError(404, "No transactions for this period");
-  }
-
-  if (!transactions) {
-    throw createError(404);
-  }
-
   res.json({
     status: "success",
     code: 200,
